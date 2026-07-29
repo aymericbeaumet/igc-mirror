@@ -17,8 +17,9 @@ service at its highest published detail level.
   digest.
 - `coverage.bin.zst` is the compressed row-major classification of every source
   address.
-- `parts/*.tar.zst` are size-bounded Git LFS objects containing the exact
-  non-transparent PNG bytes returned by the source service.
+- The pinned GitHub Release carries `part-000.tar.zst` through
+  `part-010.tar.zst`: size-bounded assets containing the exact non-transparent
+  PNG bytes returned by the source service.
 
 The archives are consolidation containers, not derived map products. Tar and
 Zstandard are lossless; the PNGs are not resized, reprojected, decoded, or
@@ -26,10 +27,10 @@ re-encoded. PMTiles is intentionally not used for the mirror because it would
 represent a derived Web-Mercator runtime tile set rather than the raw
 Lambert-93 source atlas.
 
-## Checkout and verify
+## Download and verify
 
 ```sh
-git lfs pull
+node download.mjs
 node verify.mjs
 ```
 

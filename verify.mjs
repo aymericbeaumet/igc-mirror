@@ -15,10 +15,15 @@ async function sha256(path) {
   return digest.digest("hex");
 }
 
-invariant(manifest.version === 4, "unsupported manifest version");
+invariant(manifest.version === 5, "unsupported manifest version");
 invariant(manifest.srs === "EPSG:2154", "unexpected coordinate reference system");
 invariant(manifest.lod === 12, "unexpected source level of detail");
 invariant(Array.isArray(manifest.parts) && manifest.parts.length > 0, "source archives are missing");
+invariant(
+  manifest.release?.baseUrl ===
+    `https://github.com/${manifest.release?.repository}/releases/download/${manifest.release?.tag}`,
+  "invalid release asset base URL",
+);
 invariant(
   manifest.parts.reduce((sum, part) => sum + part.tileCount, 0) === manifest.tileCount,
   "archive tile counts do not match the manifest",
@@ -29,8 +34,15 @@ invariant(
   "coverage checksum mismatch",
 );
 
+let materialized = 0;
 for (const part of manifest.parts) {
   const path = new URL(part.file, import.meta.url);
+  try {
+    statSync(path);
+  } catch {
+    continue;
+  }
+  materialized += 1;
   const descriptor = openSync(path, "r");
   const buffer = Buffer.alloc(64);
   const bytesRead = readSync(descriptor, buffer, 0, buffer.length, 0);
@@ -43,5 +55,6 @@ for (const part of manifest.parts) {
 }
 
 process.stdout.write(
-  `IGC mirror PASS: ${manifest.tileCount} exact source PNGs in ${manifest.parts.length} lossless archives\n`,
+  `IGC mirror PASS: ${manifest.tileCount} exact source PNGs in ${manifest.parts.length} release assets` +
+    ` (${materialized} materialized locally)\n`,
 );

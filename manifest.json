@@ -1,0 +1,122 @@
+{
+  "version": 5,
+  "service": "https://capgeo2.paris.fr/public/rest/services/IGC/IGC_Atlas/MapServer",
+  "srs": "EPSG:2154",
+  "tileSize": 256,
+  "origin": [-35597500, 48953100],
+  "lod": 12,
+  "resolution": 0.07464551054102107,
+  "extent": [637827.6, 6849420.6, 670590.6, 6874797.490409704],
+  "bounds": [2.15079496351993, 48.7419078217123, 2.60004437502705, 48.9724479299477],
+  "marginTiles": 1,
+  "cols": [1896218, 1897934],
+  "rows": [2201985, 2203314],
+  "addressCount": 2283610,
+  "tileCount": 309491,
+  "transparentTileCount": 1968029,
+  "missingTileCount": 6090,
+  "coverage": {
+    "file": "coverage.bin.zst",
+    "sha256": "9e255391c6f63aa3af609c653da7a89615ef046305429137915a6fcf4ef4cb81",
+    "byteLength": 2199,
+    "decodedByteLength": 2283610,
+    "encoding": "uint8-row-major",
+    "codes": {
+      "content": 1,
+      "transparent": 2,
+      "missing": 3
+    }
+  },
+  "release": {
+    "repository": "aymericbeaumet/igc-mirror",
+    "tag": "igc-atlas-lod12-v1",
+    "baseUrl": "https://github.com/aymericbeaumet/igc-mirror/releases/download/igc-atlas-lod12-v1"
+  },
+  "parts": [
+    {
+      "file": "parts/part-000.tar.zst",
+      "tileCount": 37401,
+      "sourceBytes": 1499930815,
+      "byteLength": 1497846967,
+      "sha256": "9b44cc137935b4e63355797d190f3e319cf8d6ebb06304a33d3da26dd375b46b"
+    },
+    {
+      "file": "parts/part-001.tar.zst",
+      "tileCount": 30179,
+      "sourceBytes": 1499953828,
+      "byteLength": 1498885460,
+      "sha256": "2c2b4fa440f2d6c4600c5ba4723a4e7eb6116a0913bb6419b3c41c6c2ec5a706"
+    },
+    {
+      "file": "parts/part-002.tar.zst",
+      "tileCount": 31502,
+      "sourceBytes": 1499994847,
+      "byteLength": 1498675783,
+      "sha256": "06f48b44cabbf5217bf1348640b7172008a7059caa69f9ca9b2c0a08feca537c"
+    },
+    {
+      "file": "parts/part-003.tar.zst",
+      "tileCount": 33611,
+      "sourceBytes": 1499928406,
+      "byteLength": 1495930084,
+      "sha256": "0b811e915dca60ec6185f4a5043723907aac6013e1cef5bf3d534a7c2a12fda6"
+    },
+    {
+      "file": "parts/part-004.tar.zst",
+      "tileCount": 21107,
+      "sourceBytes": 1499985409,
+      "byteLength": 1500078254,
+      "sha256": "2d2bec48e5c44fb0c22100af236bc9e14edce3a83975c46f868581c0cc028e34"
+    },
+    {
+      "file": "parts/part-005.tar.zst",
+      "tileCount": 27113,
+      "sourceBytes": 1499990128,
+      "byteLength": 1499143110,
+      "sha256": "a0ba1d63e413d4ef3cee28ed1c4754aa570dc2667a33e69f6aea00ee192eb663"
+    },
+    {
+      "file": "parts/part-006.tar.zst",
+      "tileCount": 30019,
+      "sourceBytes": 1499915857,
+      "byteLength": 1498708711,
+      "sha256": "d0e9a06d198b0d68cb2622fb9051703ff2f135d6d8d2509c02f904a388808198"
+    },
+    {
+      "file": "parts/part-007.tar.zst",
+      "tileCount": 27491,
+      "sourceBytes": 1499990140,
+      "byteLength": 1499569598,
+      "sha256": "adfdd7ac4d04ebb91682db1526c2b863009ecd14538addbaa369bb55a25c8b06"
+    },
+    {
+      "file": "parts/part-008.tar.zst",
+      "tileCount": 25831,
+      "sourceBytes": 1499913862,
+      "byteLength": 1499610732,
+      "sha256": "4e1d61efb87ea6f079928e44093ecab3743c06a8e975941da1bb318cea98e743"
+    },
+    {
+      "file": "parts/part-009.tar.zst",
+      "tileCount": 25008,
+      "sourceBytes": 1499956884,
+      "byteLength": 1499599507,
+      "sha256": "0c5dc63ced0bed54166a9991fdcef44074b2bdf557412ca969e87e4ef2339fcc"
+    },
+    {
+      "file": "parts/part-010.tar.zst",
+      "tileCount": 20229,
+      "sourceBytes": 1044479237,
+      "byteLength": 1044244809,
+      "sha256": "148172112c2de85fcb9f697f286e6d6f56336a6d877b36b989ff68620708fc4b"
+    }
+  ],
+  "fetchedAt": "2026-07-11T03:15:13.397Z",
+  "serviceMetadata": {
+    "currentVersion": 11.1,
+    "mapName": "IGC_Atlas",
+    "maxLod": 12,
+    "maxLodResolution": 0.07464551054102107,
+    "fullExtent": [637827.6, 6849420.6, 670590.6, 6874797.490409704]
+  }
+}
