@@ -48,7 +48,7 @@ for (const part of manifest.parts) {
   const bytesRead = readSync(descriptor, buffer, 0, buffer.length, 0);
   closeSync(descriptor);
   const prefix = buffer.subarray(0, bytesRead).toString("utf8");
-  invariant(!prefix.startsWith("version https://git-lfs.github.com/spec"), `${part.file} is only an LFS pointer`);
+  invariant(!prefix.startsWith("version https://git-lfs.github.com/spec"), `${part.file} is not release asset bytes`);
   invariant(statSync(path).size === part.byteLength, `${part.file} size mismatch`);
   invariant((await sha256(part.file)) === part.sha256, `${part.file} checksum mismatch`);
   process.stdout.write(`verified ${part.file}\n`);

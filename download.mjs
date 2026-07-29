@@ -2,7 +2,7 @@
 
 import { createHash } from "node:crypto";
 import { spawn } from "node:child_process";
-import { createReadStream, existsSync, mkdirSync, readFileSync, renameSync, statSync } from "node:fs";
+import { createReadStream, existsSync, mkdirSync, readFileSync, renameSync, rmSync, statSync } from "node:fs";
 import { basename, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -50,20 +50,28 @@ const worker = async () => {
     }
     const partial = `${target}.partial`;
     mkdirSync(dirname(partial), { recursive: true });
-    await run("curl", [
-      "--fail",
-      "--location",
-      "--continue-at",
-      "-",
-      "--retry",
-      "3",
-      "--retry-all-errors",
-      "--output",
-      partial,
-      `${manifest.release.baseUrl}/${name}`,
-    ]);
-    invariant(statSync(partial).size === part.byteLength, `${name} size mismatch`);
-    invariant((await sha256(partial)) === part.sha256, `${name} checksum mismatch`);
+    let valid = false;
+    for (let attempt = 0; attempt < 2 && !valid; attempt += 1) {
+      if (attempt > 0 || (existsSync(partial) && statSync(partial).size > part.byteLength)) {
+        rmSync(partial, { force: true });
+      }
+      await run("curl", [
+        "--fail",
+        "--location",
+        "--continue-at",
+        "-",
+        "--retry",
+        "8",
+        "--retry-all-errors",
+        "--output",
+        partial,
+        `${manifest.release.baseUrl}/${name}`,
+      ]);
+      valid =
+        statSync(partial).size === part.byteLength &&
+        (await sha256(partial)) === part.sha256;
+    }
+    invariant(valid, `${name} size or checksum mismatch after a clean retry`);
     renameSync(partial, target);
     process.stdout.write(`downloaded ${name}\n`);
   }
