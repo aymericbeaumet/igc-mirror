@@ -1,0 +1,4 @@
+parts/*.tar.zst filter=lfs diff=lfs merge=lfs -text
+*.json text diff
+*.md text diff
+*.mjs text diff
